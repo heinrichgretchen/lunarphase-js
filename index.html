@@ -1,269 +1,338 @@
-<!doctype html>
-<html class="default no-js">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>lunarphase-js</title>
-	<meta name="description" content="Documentation for lunarphase-js">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<script async src="assets/js/search.js" id="search-script"></script>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
 </head>
+
 <body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">lunarphase-js</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<h1>lunarphase-js</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#lunar-phase" id="lunar-phase" style="color: inherit; text-decoration: none;">
-					<h1>Lunar phase</h1>
-				</a>
-				<p>Calculate phase of the moon using Julian date.</p>
-				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
-					<h1>Getting Started</h1>
-				</a>
-				<p>To install, execute:</p>
-				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">i</span><span style="color: #000000"> </span><span style="color: #001080">lunarphase</span><span style="color: #000000">-</span><span style="color: #001080">js</span>
-</code></pre>
-				<p>Then, import into a project as:</p>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Moon</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;lunarphase-js&quot;</span><span style="color: #000000">;</span>
-</code></pre>
-				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-					<h1>Usage</h1>
-				</a>
-				<p>In the lunar calendar there are 8 phases each synodic month, which is the number of days to complete the cycle.  This time between two identical syzygies is equivalent to 29.53059 Earth days.</p>
-				<p>Lunar phases, in order:</p>
-				<table>
-					<thead>
-						<tr>
-							<th>Phase</th>
-							<th>Northern Hemisphere</th>
-							<th>Southern Hemisphere</th>
-						</tr>
-					</thead>
-					<tbody><tr>
-							<td>New</td>
-							<td>🌑</td>
-							<td>🌑</td>
-						</tr>
-						<tr>
-							<td>Waxing Crescent</td>
-							<td>🌒</td>
-							<td>🌘</td>
-						</tr>
-						<tr>
-							<td>First Quarter</td>
-							<td>🌓</td>
-							<td>🌗</td>
-						</tr>
-						<tr>
-							<td>Waxing Gibbous</td>
-							<td>🌔</td>
-							<td>🌖</td>
-						</tr>
-						<tr>
-							<td>Full</td>
-							<td>🌕</td>
-							<td>🌕</td>
-						</tr>
-						<tr>
-							<td>Waning Gibbous</td>
-							<td>🌖</td>
-							<td>🌔</td>
-						</tr>
-						<tr>
-							<td>Last Quarter</td>
-							<td>🌗</td>
-							<td>🌓</td>
-						</tr>
-						<tr>
-							<td>Waning Crescent</td>
-							<td>🌘</td>
-							<td>🌒</td>
-						</tr>
-				</tbody></table>
-				<a href="#julian-day" id="julian-day" style="color: inherit; text-decoration: none;">
-					<h2>Julian Day</h2>
-				</a>
-				<p>Convert to and from Gregorian Dates to Julian Days via the <code>JulianDay</code> module.</p>
-				<p>To convert a date to Julian Day:</p>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">JulianDay</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;lunarphase-js&quot;</span><span style="color: #000000">;</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">date</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">();</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">julian</span><span style="color: #000000"> = </span><span style="color: #001080">JulianDay</span><span style="color: #000000">.</span><span style="color: #795E26">fromDate</span><span style="color: #000000">(</span><span style="color: #001080">date</span><span style="color: #000000">);</span>
-</code></pre>
-				<p>To convert a Julian Day to a date:</p>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">JulianDay</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;lunarphase-js&quot;</span><span style="color: #000000">;</span>
+<div id="main">
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">julian</span><span style="color: #000000"> = </span><span style="color: #098658">2459356.529302257</span><span style="color: #000000">;</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">date</span><span style="color: #000000"> = </span><span style="color: #001080">JulianDay</span><span style="color: #000000">.</span><span style="color: #795E26">toDate</span><span style="color: #000000">(</span><span style="color: #001080">julian</span><span style="color: #000000">);</span>
-</code></pre>
-				<a href="#lunar-phases" id="lunar-phases" style="color: inherit; text-decoration: none;">
-					<h2>Lunar Phases</h2>
-				</a>
-				<p>For a specific date, pass a date object to a function</p>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Moon</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;lunarphase-js&quot;</span><span style="color: #000000">;</span>
+    <h1 class="page-title">Home</h1>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">date</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">();</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">phase</span><span style="color: #000000"> = </span><span style="color: #001080">Moon</span><span style="color: #000000">.</span><span style="color: #795E26">lunarPhase</span><span style="color: #000000">(</span><span style="color: #001080">date</span><span style="color: #000000">);</span>
-</code></pre>
-				<p>Otherwise, current date will be used</p>
-				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Moon</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;lunarphase-js&quot;</span><span style="color: #000000">;</span>
+    
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">phase</span><span style="color: #000000"> = </span><span style="color: #001080">Moon</span><span style="color: #000000">.</span><span style="color: #795E26">lunarPhase</span><span style="color: #000000">();</span>
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>Lunar phase</h1>
+<p>Calculate phase of the moon using Julian date.</p>
+<h1>Getting Started</h1>
+<p>To install, execute:</p>
+<pre><code>npm i lunarphase-js
 </code></pre>
-				<a href="#lunar-phase-1" id="lunar-phase-1" style="color: inherit; text-decoration: none;">
-					<h3>Lunar Phase</h3>
-				</a>
-				<p>To get the current lunar phase from the <code>LunarPhase</code> enum (ex: &quot;Full&quot;)</p>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">phase</span><span style="color: #000000"> = </span><span style="color: #001080">Moon</span><span style="color: #000000">.</span><span style="color: #795E26">lunarPhase</span><span style="color: #000000">();</span>
+<p>Then, import into a project as:</p>
+<pre class="prettyprint source lang-js"><code>import { Moon } from &quot;lunarphase-js&quot;;
 </code></pre>
-				<a href="#lunar-phase-emoji" id="lunar-phase-emoji" style="color: inherit; text-decoration: none;">
-					<h3>Lunar Phase Emoji</h3>
-				</a>
-				<p>To get the current lunar phase emoji from the <code>LunarPhaseEmoji</code> enum (ex: &quot;🌕&quot;)</p>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">phaseEmoji</span><span style="color: #000000"> = </span><span style="color: #001080">Moon</span><span style="color: #000000">.</span><span style="color: #795E26">lunarPhaseEmoji</span><span style="color: #000000">();</span>
+<h1>Usage</h1>
+<p>In the lunar calendar there are 8 phases each synodic month, which is the number of days to complete the cycle. This time between two identical syzygies is equivalent to 29.53059 Earth days.</p>
+<p>Lunar phases, in order:</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Northern Hemisphere</th>
+<th>Southern Hemisphere</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New</td>
+<td>🌑</td>
+<td>🌑</td>
+</tr>
+<tr>
+<td>Waxing Crescent</td>
+<td>🌒</td>
+<td>🌘</td>
+</tr>
+<tr>
+<td>First Quarter</td>
+<td>🌓</td>
+<td>🌗</td>
+</tr>
+<tr>
+<td>Waxing Gibbous</td>
+<td>🌔</td>
+<td>🌖</td>
+</tr>
+<tr>
+<td>Full</td>
+<td>🌕</td>
+<td>🌕</td>
+</tr>
+<tr>
+<td>Waning Gibbous</td>
+<td>🌖</td>
+<td>🌔</td>
+</tr>
+<tr>
+<td>Last Quarter</td>
+<td>🌗</td>
+<td>🌓</td>
+</tr>
+<tr>
+<td>Waning Crescent</td>
+<td>🌘</td>
+<td>🌒</td>
+</tr>
+</tbody>
+</table>
+<h2>Julian Day</h2>
+<p>Convert to and from Gregorian Dates to Julian Days via the <code>JulianDay</code> module.</p>
+<p>API Reference:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Output</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fromDate()</td>
+<td>2459357.5380029744</td>
+<td>Convert date to Julian Day</td>
+</tr>
+<tr>
+<td>toDate()</td>
+<td>2021-05-23T05:56:10.418Z</td>
+<td>Convert Julian Day to date</td>
+</tr>
+</tbody>
+</table>
+<p>To convert a date to Julian Day:</p>
+<pre class="prettyprint source lang-js"><code>import { JulianDay } from &quot;lunarphase-js&quot;;
+
+const date = new Date();
+const julian = JulianDay.fromDate(date);
 </code></pre>
-				<p>To get emoji for other lunar phases of the <code>LunarPhase</code> enum:</p>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">emoji</span><span style="color: #000000"> = </span><span style="color: #001080">Moon</span><span style="color: #000000">.</span><span style="color: #795E26">emojiForLunarPhase</span><span style="color: #000000">(</span><span style="color: #001080">Moon</span><span style="color: #000000">.</span><span style="color: #001080">LunarPhase</span><span style="color: #000000">.</span><span style="color: #001080">Full</span><span style="color: #000000">);</span>
+<p>To convert a Julian Day to a date:</p>
+<pre class="prettyprint source lang-js"><code>import { JulianDay } from &quot;lunarphase-js&quot;;
+
+const julian = 2459356.529302257;
+const date = JulianDay.toDate(julian);
 </code></pre>
-				<a href="#lunar-age" id="lunar-age" style="color: inherit; text-decoration: none;">
-					<h3>Lunar Age</h3>
-				</a>
-				<p>To get the lunar age (ex: 16.54412413414952)</p>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">age</span><span style="color: #000000"> = </span><span style="color: #001080">Moon</span><span style="color: #000000">.</span><span style="color: #795E26">lunarAge</span><span style="color: #000000">();</span>
+<h2>Lunar Phases</h2>
+<p>API Reference:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Output</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lunarPhase()</td>
+<td>Waxing Gibbous</td>
+<td>Get lunar phase for a given date</td>
+</tr>
+<tr>
+<td>lunarPhaseEmoji()</td>
+<td>🌖</td>
+<td>Get emoji of lunar phase for a given date</td>
+</tr>
+<tr>
+<td>isWaxing()</td>
+<td>true</td>
+<td>Whether the moon is waxing</td>
+</tr>
+<tr>
+<td>isWaning()</td>
+<td>false</td>
+<td>Whether the moon is waning</td>
+</tr>
+<tr>
+<td>lunarAge()</td>
+<td>11.367344279004676</td>
+<td>Earth days since the last new moon</td>
+</tr>
+<tr>
+<td>lunarAgePercent()</td>
+<td>0.38497186542446116</td>
+<td>Percentage through the lunar synodic month</td>
+</tr>
+<tr>
+<td>lunationNumber()</td>
+<td>1217</td>
+<td>Brown Lunation Number (BLN)</td>
+</tr>
+</tbody>
+</table>
+<p>For a specific date, pass a date object to a function</p>
+<pre class="prettyprint source lang-js"><code>import { Moon } from &quot;lunarphase-js&quot;;
+
+const date = new Date();
+const phase = Moon.lunarPhase(date);
 </code></pre>
-				<a href="#lunar-age-percent" id="lunar-age-percent" style="color: inherit; text-decoration: none;">
-					<h3>Lunar Age Percent</h3>
-				</a>
-				<p>To get the percentage through the lunar cycle (ex: 0.5602368519132597)</p>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">agePercent</span><span style="color: #000000"> = </span><span style="color: #001080">Moon</span><span style="color: #000000">.</span><span style="color: #795E26">lunarAgePercent</span><span style="color: #000000">();</span>
+<p>Otherwise, current date will be used</p>
+<pre class="prettyprint source lang-js"><code>import { Moon } from &quot;lunarphase-js&quot;;
+
+const phase = Moon.lunarPhase();
 </code></pre>
-				<a href="#waxing" id="waxing" style="color: inherit; text-decoration: none;">
-					<h3>Waxing</h3>
-				</a>
-				<p>Whether the moon is waxing (ex: false)</p>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">waxing</span><span style="color: #000000"> = </span><span style="color: #001080">Moon</span><span style="color: #000000">.</span><span style="color: #795E26">isWaxing</span><span style="color: #000000">();</span>
+<h3>Lunar Phase</h3>
+<p>To get the current lunar phase from the <code>LunarPhase</code> enum (ex: &quot;FULL&quot;)</p>
+<pre class="prettyprint source lang-js"><code>const phase = Moon.lunarPhase();
 </code></pre>
-				<a href="#waning" id="waning" style="color: inherit; text-decoration: none;">
-					<h3>Waning</h3>
-				</a>
-				<p>Whether the moon is waning (ex: true)</p>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">waning</span><span style="color: #000000"> = </span><span style="color: #001080">Moon</span><span style="color: #000000">.</span><span style="color: #795E26">isWaning</span><span style="color: #000000">();</span>
+<h3>Lunar Phase Emoji</h3>
+<p>To get the current lunar phase emoji from the <code>LunarEmoji</code> (ex: &quot;🌕&quot;):</p>
+<pre class="prettyprint source lang-js"><code>const phaseEmoji = Moon.lunarPhaseEmoji();
 </code></pre>
-				<a href="#julian-date" id="julian-date" style="color: inherit; text-decoration: none;">
-					<h3>Julian Date</h3>
-				</a>
-				<p>To get the current Julian date (ex: 2459244.5972259142)</p>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">julianDate</span><span style="color: #000000"> = </span><span style="color: #001080">Moon</span><span style="color: #000000">.</span><span style="color: #795E26">getJulianDate</span><span style="color: #000000">();</span>
+<p>As phases are inverted between Northern and Southern Hemispheres, optionally pass a <code>Hemisphere</code> to the function:</p>
+<pre class="prettyprint source lang-js"><code>import { Moon } from &quot;lunarphase-js&quot;;
+import { Hemisphere } from &quot;lunarphase-js&quot;;
+
+const date = new Date();
+Moon.lunarPhaseEmoji(date, Hemisphere.NORTHERN);
 </code></pre>
-				<a href="#lunation-number" id="lunation-number" style="color: inherit; text-decoration: none;">
-					<h3>Lunation Number</h3>
-				</a>
-				<p>Brown Lunation Number (BLN), per Ernest William Brown&#39;s lunar theory, defining Lunation 1 as the first new moon of 1923 at approximately 02:41 UTC, January 17, 1923</p>
-				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">lunationNumber</span><span style="color: #000000"> = </span><span style="color: #001080">Moon</span><span style="color: #000000">.</span><span style="color: #795E26">lunationNumber</span><span style="color: #000000">();</span>
+<p>To get emoji for other lunar phases, pass a <code>LunarPhase</code> enum:</p>
+<pre class="prettyprint source lang-js"><code>const emoji = Moon.emojiForLunarPhase(Moon.LunarPhase.Full);
 </code></pre>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class=" ">
-						<a href="modules.html">Exports</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/constants_hemisphere.html">constants/<wbr>Hemisphere</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/constants_lunaremoji.html">constants/<wbr>Lunar<wbr>Emoji</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/constants_lunarmonth.html">constants/<wbr>Lunar<wbr>Month</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/constants_lunarphase.html">constants/<wbr>Lunar<wbr>Phase</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/constants_lunationnumber.html">constants/<wbr>Lunation<wbr>Number</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/index.html">index</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/model_julianday.html">model/<wbr>Julian<wbr>Day</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/model_moon.html">model/<wbr>Moon</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-				</ul>
-			</nav>
-		</div>
-	</div>
+<p>Optionally pass a <code>Hemisphere</code> to the function:</p>
+<pre class="prettyprint source lang-js"><code>import { Moon } from &quot;lunarphase-js&quot;;
+import { LunarPhase } from &quot;lunarphase-js&quot;;
+import { Hemisphere } from &quot;lunarphase-js&quot;;
+
+Moon.emojiForLunarPhase(LunarPhase.FIRST_QUARTER, Hemisphere.SOUTHERN);
+</code></pre>
+<h3>Waxing</h3>
+<p>Whether the moon is waxing (ex: false)</p>
+<pre class="prettyprint source lang-js"><code>const waxing = Moon.isWaxing();
+</code></pre>
+<h3>Waning</h3>
+<p>Whether the moon is waning (ex: true)</p>
+<pre class="prettyprint source lang-js"><code>const waning = Moon.isWaning();
+</code></pre>
+<h3>Lunar Age</h3>
+<p>Age in Earth days through the current lunar cycle, equivalent to 29.53059 Earth days, based on Mean Synodic Month, 2000 AD mean solar days.</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Start</th>
+<th>Event</th>
+<th>End</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New</td>
+<td></td>
+<td>0</td>
+<td>1.84566173161</td>
+</tr>
+<tr>
+<td>Waxing Crescent</td>
+<td>1.84566173161</td>
+<td>3.69132346322</td>
+<td>5.53698519483</td>
+</tr>
+<tr>
+<td>First Quarter</td>
+<td>5.53698519483</td>
+<td>7.38264692644</td>
+<td>9.22830865805</td>
+</tr>
+<tr>
+<td>Waxing Gibbous</td>
+<td>9.22830865805</td>
+<td>11.07397038966</td>
+<td>12.91963212127</td>
+</tr>
+<tr>
+<td>Full</td>
+<td>12.91963212127</td>
+<td>14.76529385288</td>
+<td>16.61095558449</td>
+</tr>
+<tr>
+<td>Waning Gibbous</td>
+<td>16.61095558449</td>
+<td>18.4566173161</td>
+<td>20.30227904771</td>
+</tr>
+<tr>
+<td>Last Quarter</td>
+<td>20.30227904771</td>
+<td>22.14794077932</td>
+<td>23.99360251093</td>
+</tr>
+<tr>
+<td>Waning Crescent</td>
+<td>23.99360251093</td>
+<td>25.83926424254</td>
+<td>27.68492597415</td>
+</tr>
+<tr>
+<td>New</td>
+<td>27.68492597415</td>
+<td>29.53058770576</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>To get the lunar age (ex: 16.54412413414952)</p>
+<pre class="prettyprint source lang-js"><code>const age = Moon.lunarAge();
+</code></pre>
+<h3>Lunar Age Percent</h3>
+<p>To get the percentage through the lunar cycle (ex: 0.5602368519132597)</p>
+<pre class="prettyprint source lang-js"><code>const agePercent = Moon.lunarAgePercent();
+</code></pre>
+<h3>Lunation Number</h3>
+<p>Brown Lunation Number (BLN), per Ernest William Brown's lunar theory, defining Lunation 1 as the first new moon of 1923 at approximately 02:41 UTC, January 17, 1923</p>
+<pre class="prettyprint source lang-js"><code>const lunationNumber = Moon.lunationNumber();
+</code></pre></article>
+    </section>
+
+
+
+
+
+
 </div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-			</ul>
-		</div>
-	</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#emojiForLunarPhase">emojiForLunarPhase</a></li><li><a href="global.html#EPOCH">EPOCH</a></li><li><a href="global.html#fromDate">fromDate</a></li><li><a href="global.html#isWaning">isWaning</a></li><li><a href="global.html#isWaxing">isWaxing</a></li><li><a href="global.html#lunarAge">lunarAge</a></li><li><a href="global.html#lunarAgePercent">lunarAgePercent</a></li><li><a href="global.html#lunarPhase">lunarPhase</a></li><li><a href="global.html#lunarPhaseEmoji">lunarPhaseEmoji</a></li><li><a href="global.html#LUNATION_BASE_JULIAN_DAY">LUNATION_BASE_JULIAN_DAY</a></li><li><a href="global.html#lunationNumber">lunationNumber</a></li><li><a href="global.html#normalize">normalize</a></li><li><a href="global.html#PHASE_LENGTH">PHASE_LENGTH</a></li><li><a href="global.html#SYNODIC_MONTH">SYNODIC_MONTH</a></li><li><a href="global.html#toDate">toDate</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue May 25 2021 01:44:31 GMT-0500 (Central Daylight Time)
 </footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
 </body>
 </html>

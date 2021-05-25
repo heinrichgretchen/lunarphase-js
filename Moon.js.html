@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Moon.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Moon.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { Hemisphere } from "./constants/Hemisphere";
+import { LunarEmoji } from "./constants/LunarEmoji";
+import { LunarPhase } from "./constants/LunarPhase";
+import { LUNATION_BASE_JULIAN_DAY, SYNODIC_MONTH } from "./constants/Time";
+import * as JulianDay from "./JulianDay";
+
+/**
+ * Moon's age, or Earth days since the last new moon.
+ *
+ * @param {Date} date Date used for calculation.
+ * @returns {number} Age of the moon, normalized within a 29.53059 Earth days calendar.
+ */
+export const lunarAge = (date = new Date()) => {
+  const percent = lunarAgePercent(date);
+  return percent * SYNODIC_MONTH;
+};
+
+/**
+ * Percentage through the lunar synodic month.
+ *
+ * @param {Date} date Date used for calculation.
+ * @returns {number} Percentage through the lunar month.
+ */
+export const lunarAgePercent = (date = new Date()) => {
+  return normalize((JulianDay.fromDate(date) - 2451550.1) / SYNODIC_MONTH);
+};
+
+/**
+ * Brown Lunation Number (BLN), per Ernest William Brown's lunar theory,
+ * defining Lunation 1 as the first new moon of 1923 at
+ * approximately 02:41 UTC, January 17, 1923
+ *
+ * @param {Date} date Date used for calculation.
+ * @returns {number} Lunation Number
+ */
+export const lunationNumber = (date = new Date()) => {
+  return Math.round((JulianDay.fromDate(date) - LUNATION_BASE_JULIAN_DAY) / SYNODIC_MONTH) + 1;
+};
+
+/**
+ * Name of the lunar phase per date submitted.
+ *
+ * @param {Date} date Date used to calculate lunar phase.
+ * @returns {string} Name as string of the current lunar phase.
+ */
+export const lunarPhase = (date = new Date()) => {
+  const age = lunarAge(date);
+
+  if (age &lt; 1.84566173161) return LunarPhase.NEW;
+  else if (age &lt; 5.53698519483) return LunarPhase.WAXING_CRESCENT;
+  else if (age &lt; 9.22830865805) return LunarPhase.FIRST_QUARTER;
+  else if (age &lt; 12.91963212127) return LunarPhase.WAXING_GIBBOUS;
+  else if (age &lt; 16.61095558449) return LunarPhase.FULL;
+  else if (age &lt; 20.30227904771) return LunarPhase.WANING_GIBBOUS;
+  else if (age &lt; 23.99360251093) return LunarPhase.LAST_QUARTER;
+  else if (age &lt; 27.68492597415) return LunarPhase.WANING_CRESCENT;
+
+  return LunarPhase.NEW;
+};
+
+/**
+ * Emoji of the lunar phase per date submitted.
+ *
+ * @param {Date} date Date used to calculate lunar phase.
+ * @param {Hemisphere} hemisphere Northern or Southern Hemisphere.
+ * @returns Emoji of the current lunar phase.
+ */
+export const lunarPhaseEmoji = (date = new Date(), hemisphere = Hemisphere.NORTHERN) => {
+  const phase = lunarPhase(date);
+
+  return emojiForLunarPhase(phase, hemisphere);
+};
+
+/**
+ * Emoji for specified lunar phase
+ *
+ * @param {LunarPhase} phase Lunar phase, per the LunarPhase enum
+ * @param {Hemisphere} hemisphere Northern or Southern Hemisphere.
+ * @returns {string} Emoji of the current lunar phase.
+ */
+export const emojiForLunarPhase = (phase, hemisphere = Hemisphere.NORTHERN) => {
+  let emoji;
+
+  if (hemisphere === Hemisphere.SOUTHERN) {
+    emoji = LunarEmoji.NorthernHemisphere;
+  } else {
+    emoji = LunarEmoji.SouthernHemisphere;
+  }
+
+  switch (phase) {
+    case LunarPhase.WANING_CRESCENT:
+      return emoji["WANING_CRESCENT"];
+    case LunarPhase.LAST_QUARTER:
+      return emoji["LAST_QUARTER"];
+    case LunarPhase.WANING_GIBBOUS:
+      return emoji["WANING_GIBBOUS"];
+    case LunarPhase.FULL:
+      return emoji["FULL"];
+    case LunarPhase.WAXING_GIBBOUS:
+      return emoji["WAXING_GIBBOUS"];
+    case LunarPhase.FIRST_QUARTER:
+      return emoji["FIRST_QUARTER"];
+    case LunarPhase.WAXING_CRESCENT:
+      return emoji["WAXING_CRESCENT"];
+
+    default:
+    case LunarPhase.NEW:
+      return emoji["NEW"];
+  }
+};
+
+/**
+ * Whether the moon is currently waxing (growing).
+ *
+ * @param {Date} date Date used for calculation.
+ * @returns {boolean} True if moon is waxing.
+ */
+export const isWaxing = (date = new Date()) => {
+  const age = lunarAge(date);
+  return age &lt;= 14.765;
+};
+
+/**
+ * Whether the moon is currently waning (shrinking).
+ *
+ * @param {Date} date Date used for calculation.
+ * @returns {boolean} True if moon is waning.
+ */
+export const isWaning = (date = new Date()) => {
+  const age = lunarAge(date);
+  return age > 14.765;
+};
+
+/**
+ * Normalization utility for percentage calculations.
+ *
+ * @param {number} value Percent value.
+ * @returns {number} Normalized value
+ */
+export const normalize = (value) => {
+  value -= Math.floor(value);
+  if (value &lt; 0) {
+    value += 1;
+  }
+
+  return value;
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#emojiForLunarPhase">emojiForLunarPhase</a></li><li><a href="global.html#EPOCH">EPOCH</a></li><li><a href="global.html#fromDate">fromDate</a></li><li><a href="global.html#isWaning">isWaning</a></li><li><a href="global.html#isWaxing">isWaxing</a></li><li><a href="global.html#lunarAge">lunarAge</a></li><li><a href="global.html#lunarAgePercent">lunarAgePercent</a></li><li><a href="global.html#lunarPhase">lunarPhase</a></li><li><a href="global.html#lunarPhaseEmoji">lunarPhaseEmoji</a></li><li><a href="global.html#LUNATION_BASE_JULIAN_DAY">LUNATION_BASE_JULIAN_DAY</a></li><li><a href="global.html#lunationNumber">lunationNumber</a></li><li><a href="global.html#normalize">normalize</a></li><li><a href="global.html#PHASE_LENGTH">PHASE_LENGTH</a></li><li><a href="global.html#SYNODIC_MONTH">SYNODIC_MONTH</a></li><li><a href="global.html#toDate">toDate</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Tue May 25 2021 01:44:31 GMT-0500 (Central Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
