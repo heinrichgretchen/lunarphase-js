@@ -4,7 +4,7 @@
  * @param {number} value Percent value.
  * @returns {number} Normalized value
  */
-export const normalize = (value) => {
+export const normalize = (value: number): number => {
   value -= Math.floor(value);
   if (value < 0) {
     value += 1;

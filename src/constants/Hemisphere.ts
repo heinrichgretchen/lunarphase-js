@@ -3,7 +3,7 @@
  * @typedef {string} Hemisphere
  * @enum {Hemisphere}
  */
-export const Hemisphere = {
-  NORTHERN: "Northern",
-  SOUTHERN: "Southern",
-};
+export enum Hemisphere {
+  NORTHERN = "Northern",
+  SOUTHERN = "Southern",
+}

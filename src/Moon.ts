@@ -1,7 +1,7 @@
 import { ANOMALISTIC_MONTH, LUNATION_BASE_JULIAN_DAY, SYNODIC_MONTH } from "./constants/Time";
 import { Hemisphere } from "./constants/Hemisphere";
-import { LunarEmoji } from "./constants/LunarEmoji";
 import { LunarPhase } from "./constants/LunarPhase";
+import { NorthernHemisphereLunarEmoji, SouthernHemisphereLunarEmoji } from "./constants/LunarEmoji";
 import { normalize } from "./utils/MathUtil";
 import * as JulianDay from "./JulianDay";
 
@@ -11,7 +11,7 @@ import * as JulianDay from "./JulianDay";
  * @param {Date} date Date used for calculation.
  * @returns {number} Age of the moon, normalized within a 29.53059 Earth days calendar.
  */
-export const lunarAge = (date = new Date()) => {
+export const lunarAge = (date: Date = new Date()): number => {
   const percent = lunarAgePercent(date);
   return percent * SYNODIC_MONTH;
 };
@@ -22,7 +22,7 @@ export const lunarAge = (date = new Date()) => {
  * @param {Date} date Date used for calculation.
  * @returns {number} Percentage through the lunar month.
  */
-export const lunarAgePercent = (date = new Date()) => {
+export const lunarAgePercent = (date: Date = new Date()): number => {
   return normalize((JulianDay.fromDate(date) - 2451550.1) / SYNODIC_MONTH);
 };
 
@@ -34,7 +34,7 @@ export const lunarAgePercent = (date = new Date()) => {
  * @param {Date} date Date used for calculation.
  * @returns {number} Lunation Number
  */
-export const lunationNumber = (date = new Date()) => {
+export const lunationNumber = (date: Date = new Date()): number => {
   return Math.round((JulianDay.fromDate(date) - LUNATION_BASE_JULIAN_DAY) / SYNODIC_MONTH) + 1;
 };
 
@@ -45,7 +45,7 @@ export const lunationNumber = (date = new Date()) => {
  * @param {Date} date Date used for calculation
  * @returns {number} Distance to the moon in Earth radii
  */
-export const lunarDistance = (date = new Date()) => {
+export const lunarDistance = (date: Date = new Date()): number => {
   const julian = JulianDay.fromDate(date);
   const agePercent = lunarAgePercent(date);
   const radians = agePercent * 2 * Math.PI;
@@ -60,7 +60,7 @@ export const lunarDistance = (date = new Date()) => {
  * @param {Date} date Date used to calculate lunar phase.
  * @returns {string} Name as string of the current lunar phase.
  */
-export const lunarPhase = (date = new Date()) => {
+export const lunarPhase = (date: Date = new Date()): LunarPhase => {
   const age = lunarAge(date);
 
   if (age < 1.84566173161) return LunarPhase.NEW;
@@ -82,8 +82,8 @@ export const lunarPhase = (date = new Date()) => {
  * @param {Hemisphere} hemisphere Northern or Southern Hemisphere.
  * @returns Emoji of the current lunar phase.
  */
-export const lunarPhaseEmoji = (date = new Date(), hemisphere = Hemisphere.NORTHERN) => {
-  const phase = lunarPhase(date);
+export const lunarPhaseEmoji = (date: Date = new Date(), hemisphere: Hemisphere = Hemisphere.NORTHERN): string => {
+  const phase: LunarPhase = lunarPhase(date);
 
   return emojiForLunarPhase(phase, hemisphere);
 };
@@ -95,16 +95,18 @@ export const lunarPhaseEmoji = (date = new Date(), hemisphere = Hemisphere.NORTH
  * @param {Hemisphere} hemisphere Northern or Southern Hemisphere.
  * @returns {string} Emoji of the current lunar phase.
  */
-export const emojiForLunarPhase = (phase, hemisphere = Hemisphere.NORTHERN) => {
+export const emojiForLunarPhase = (phase: LunarPhase, hemisphere: Hemisphere = Hemisphere.NORTHERN): string => {
   let emoji;
 
   if (hemisphere === Hemisphere.SOUTHERN) {
-    emoji = LunarEmoji.NorthernHemisphere;
+    emoji = NorthernHemisphereLunarEmoji;
   } else {
-    emoji = LunarEmoji.SouthernHemisphere;
+    emoji = SouthernHemisphereLunarEmoji;
   }
 
   switch (phase) {
+    case LunarPhase.NEW:
+      return emoji["NEW"];
     case LunarPhase.WANING_CRESCENT:
       return emoji["WANING_CRESCENT"];
     case LunarPhase.LAST_QUARTER:
@@ -121,8 +123,7 @@ export const emojiForLunarPhase = (phase, hemisphere = Hemisphere.NORTHERN) => {
       return emoji["WAXING_CRESCENT"];
 
     default:
-    case LunarPhase.NEW:
-      return emoji["NEW"];
+      throw new Error(`Invalid lunar phase of ${phase} specified`);
   }
 };
 
@@ -132,7 +133,7 @@ export const emojiForLunarPhase = (phase, hemisphere = Hemisphere.NORTHERN) => {
  * @param {Date} date Date used for calculation.
  * @returns {boolean} True if moon is waxing.
  */
-export const isWaxing = (date = new Date()) => {
+export const isWaxing = (date: Date = new Date()): boolean => {
   const age = lunarAge(date);
   return age <= 14.765;
 };
@@ -143,7 +144,7 @@ export const isWaxing = (date = new Date()) => {
  * @param {Date} date Date used for calculation.
  * @returns {boolean} True if moon is waning.
  */
-export const isWaning = (date = new Date()) => {
+export const isWaning = (date: Date = new Date()): boolean => {
   const age = lunarAge(date);
   return age > 14.765;
 };
