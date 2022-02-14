@@ -1,6 +1,7 @@
 import { ANOMALISTIC_MONTH, LUNATION_BASE_JULIAN_DAY, SYNODIC_MONTH } from "./constants/Time";
 import { Hemisphere } from "./constants/Hemisphere";
 import { LunarPhase } from "./constants/LunarPhase";
+import { MoonOptions, MoonOptionsFactory } from "./MoonOptions";
 import { NorthernHemisphereLunarEmoji, SouthernHemisphereLunarEmoji } from "./constants/LunarEmoji";
 import { normalize } from "./utils/MathUtil";
 import * as JulianDay from "./JulianDay";
@@ -60,7 +61,7 @@ export const lunarDistance = (date: Date = new Date()): number => {
  * @param {Date} date Date used to calculate lunar phase.
  * @returns {string} Name as string of the current lunar phase.
  */
-export const lunarPhase = (date: Date = new Date()): LunarPhase => {
+export const lunarPhase = (date: Date = new Date(), options?: Partial<MoonOptions>): LunarPhase => {
   const age = lunarAge(date);
 
   if (age < 1.84566173161) return LunarPhase.NEW;
@@ -82,10 +83,10 @@ export const lunarPhase = (date: Date = new Date()): LunarPhase => {
  * @param {Hemisphere} hemisphere Northern or Southern Hemisphere.
  * @returns Emoji of the current lunar phase.
  */
-export const lunarPhaseEmoji = (date: Date = new Date(), hemisphere: Hemisphere = Hemisphere.NORTHERN): string => {
+export const lunarPhaseEmoji = (date: Date = new Date(), options?: Partial<MoonOptions>): string => {
   const phase: LunarPhase = lunarPhase(date);
 
-  return emojiForLunarPhase(phase, hemisphere);
+  return emojiForLunarPhase(phase, options);
 };
 
 /**
@@ -95,8 +96,13 @@ export const lunarPhaseEmoji = (date: Date = new Date(), hemisphere: Hemisphere 
  * @param {Hemisphere} hemisphere Northern or Southern Hemisphere.
  * @returns {string} Emoji of the current lunar phase.
  */
-export const emojiForLunarPhase = (phase: LunarPhase, hemisphere: Hemisphere = Hemisphere.NORTHERN): string => {
+export const emojiForLunarPhase = (phase: LunarPhase, options?: Partial<MoonOptions>): string => {
   let emoji;
+
+  const { hemisphere } = {
+    ...MoonOptionsFactory(),
+    ...options,
+  };
 
   if (hemisphere === Hemisphere.SOUTHERN) {
     emoji = NorthernHemisphereLunarEmoji;
