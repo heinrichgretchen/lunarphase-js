@@ -63,14 +63,14 @@ export const lunarDistance = (date = new Date()) => {
 export const lunarPhase = (date = new Date()) => {
   const age = lunarAge(date);
 
-  if (age < 1.84566173161) return LunarPhase.NEW;
+  if (age < 0.55) return LunarPhase.NEW;
   else if (age < 5.53698519483) return LunarPhase.WAXING_CRESCENT;
   else if (age < 9.22830865805) return LunarPhase.FIRST_QUARTER;
-  else if (age < 12.91963212127) return LunarPhase.WAXING_GIBBOUS;
-  else if (age < 16.61095558449) return LunarPhase.FULL;
+  else if (age < 14) return LunarPhase.WAXING_GIBBOUS;
+  else if (age < 15) return LunarPhase.FULL;
   else if (age < 20.30227904771) return LunarPhase.WANING_GIBBOUS;
   else if (age < 23.99360251093) return LunarPhase.LAST_QUARTER;
-  else if (age < 27.68492597415) return LunarPhase.WANING_CRESCENT;
+  else if (age < 28) return LunarPhase.WANING_CRESCENT;
 
   return LunarPhase.NEW;
 };
