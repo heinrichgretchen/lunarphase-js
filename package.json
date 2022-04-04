@@ -1,12 +1,11 @@
 {
-  "name": "lunarphase-js",
-  "version": "1.0.10",
+  "name": "@heinrichgretchen/lunarphase-js",
+  "version": "1.0.12",
   "description": "Calculate phase of the moon using Julian date",
-  "author": "Jason Sturges <jason@jsonsturges.com> (https://jasonsturges.com)",
-  "homepage": "https://jasonsturges.github.io/lunarphase-js/",
+  "author": "Alex Gärtner <ag@heinrichgretchen.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jasonsturges/lunarphase-js"
+    "url": "https://github.com/heinrichgretchen/lunarphase-js"
   },
   "license": "ISC",
   "keywords": [
@@ -17,7 +16,7 @@
   ],
   "main": "dist/cjs/lunarphase-js.js",
   "module": "dist/esm/lunarphase-js.js",
-  "browser": "dist/browser/lunarphase-js..js",
+  "browser": "dist/browser/lunarphase-js.js",
   "files": [
     "dist"
   ],
@@ -44,5 +43,8 @@
     "rollup": "^2.67.2",
     "typedoc": "^0.22.11",
     "typescript": "^4.5.5"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/heinrichgretchen"
   }
 }
